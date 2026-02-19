@@ -1,13 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View } from 'react-native';
+
+import HomeScreen from './src/navigations';
 
 const App = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>KRISHA-ANN TORRES</Text>
-      <Text style={{ fontSize: 10, marginTop: 10 }}>Bachelor of Science in Information Technology - students</Text>
+    <View style={{ flex: 1 }}>
+      <HomeScreen />
     </View>
-  )
-}
+  );
+};
 
-export default App
+export default App;

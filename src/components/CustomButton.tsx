@@ -1,9 +1,14 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const CustomButton = ({ containerStyle, textStyle, label, onPress }) => {
+const CustomButton = ({ 
+  containerStyle= {}, 
+  textsStyle= {}, 
+  label= '', 
+  onPress=() => {}, 
+  loading= false}) => {
     return (
         <View style={containerStyle}>
-        <TouchableOpacity onPress={onPress}>
+          <TouchableOpacity onPress={onPress} disabled={loading}>
             <View
             style={{
                 alignItems: 'center',
@@ -11,7 +16,7 @@ const CustomButton = ({ containerStyle, textStyle, label, onPress }) => {
                 padding: 10,
             }}
             >
-            <Text style={textStyle}>{label}</Text>
+            <Text style={textsStyle}>{label}</Text>
             </View>
         </TouchableOpacity>
         </View>

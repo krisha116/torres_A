@@ -293,27 +293,29 @@ const Login: React.FC = () => {
   const navigations = useNavigation();
   const dispatch = useDispatch();
   const {isLoading, data, isError, error} = useSelector(
-  (state: { 
-    auth: { 
+  (state: 
+    { auth: { 
       isLoading: boolean; 
       isError: boolean; 
       error: string; 
       data: {
         status: boolean;
         message: string;
-        data: {
-          token: string;
-          user: {
+        data: 
+        {token: string;
+          user:
+           {
             username: string;
             password: string;
             roles: string[];
             verified: boolean;
           }
         }
-      } }) => state.auth);
+      
+    }
+  }}) =>
+         state.auth)
   
-  
-
   const [username, setUsername] = useState<number | string>('');
   const [password, setPassword] = useState<string>();
 
@@ -343,14 +345,14 @@ const Login: React.FC = () => {
     ]}>
       <StatusBar barStyle="dark-content" />
       
-      <View style={styles.headerSection}>
+      {/* <View style={styles.headerSection}>
         <Image
-          source={IMG.LOGO2}
+          source={IMG.LOGO}
           style={styles.logo}
           resizeMode="contain"
         />
         <Text style={styles.welcomeText}>Welcome</Text>
-      </View>
+      </View> */}
 
       <View style={styles.formSection}>
         <CustomTextInput 
@@ -358,7 +360,7 @@ const Login: React.FC = () => {
           placeholder={'Enter Username'} 
           
           // CHANGED BACK TO YOUR ORIGINAL PROP NAME
-          value={(val: number | string) => setUsername(val)} 
+          value={(val: number | string) => setUsername(val as string)} 
           containerStyle={styles.inputContainer}
           textStyle={styles.inputText} 
         />
@@ -367,8 +369,8 @@ const Login: React.FC = () => {
           label={'Password'}
           placeholder={'Enter Password'}
           // CHANGED BACK TO YOUR ORIGINAL PROP NAME
-          value={(val: string) => setPassword(val)}
-          secureTextEntry={true}
+          value={(val: string | number) => setPassword(val as string)}
+          // secureTextEntry={true}
           containerStyle={styles.inputContainer}
           textStyle={styles.inputText}
         />
@@ -376,16 +378,18 @@ const Login: React.FC = () => {
         <CustomButton 
           label={'LOG IN'} 
           containerStyle={styles.loginButton} 
-          textStyle={styles.loginButtonText}
+          textsStyle={styles.loginButtonText}
           onPress={handleLogin}
         />
       </View>
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>New to the pack?</Text>
-        <TouchableOpacity onPress={() => navigations.navigate(ROUTES.REGISTER)}>
+        {/* <TouchableOpacity onPress={() => navigations.navigate(ROUTES.REGISTER)}>
+          
           <Text style={styles.registerLink}> Register Now </Text>
-        </TouchableOpacity>
+        
+          </TouchableOpacity> */}
       </View>
     </View>
   );

@@ -8,4 +8,5 @@ export default {
   PROFILE: 'Profile',
   LOGOUT: 'Logout',
   MIDTERM: 'Midterm',
+  
 };

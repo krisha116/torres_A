@@ -1,4 +1,7 @@
-export async function authLogin({username, password}) {
+import { LoginCredentials, LoginResponse } from "../../types/apitypes";
+
+
+export async function authLogin({username, email, password}: LoginCredentials) {
     const BASE_URL = 'http://localhost:8000/api';
     let options = {
         method: 'POST',
@@ -7,10 +10,10 @@ export async function authLogin({username, password}) {
             'Content-Type': 'application/json',
 
     },
-    // body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    // }),
+     body: JSON.stringify({
+        username: username,
+        password: password,
+    }),
 };
  
 const response = await fetch(BASE_URL +  '/login', {
@@ -21,33 +24,24 @@ const response = await fetch(BASE_URL +  '/login', {
     }),
 });
 
- let data;
-    try {
-        data = await response.json();
-    } catch (e) {
-        data = null;
-    }
-
-    if (response.ok) {
-        console.log('Login success response:', data);
-        return data;
-    } else {
-        const message =
-            (data && (data.errors?.password || data.errors?.detail || data.detail)) ||
-            'Login failed';
-        throw new Error(message);
-    }
+//  let data;
+//     try {
+//         data = await response.json();
+//     } catch (e) {
+//         data = null;
+//     }
 
 
 
-// const data = await response.json();
+const data = await response.json();
+const data: LoginResponse = await response.json();
 
-// if (response.status === 200) {
-//     console.log(data);
-//     return data;
-// }else{
-//     throw new Error(data.errors || 'Login failed');
-// }
+if (response.status === 200) {
+    console.log(data);
+    return data;
+}else{
+    throw new Error(data.errors || 'Login failed');
+}
 
 }
 

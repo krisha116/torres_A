@@ -20,4 +20,4 @@ const CustomTextInput = ({label, placeholder, value, textStyle, containerStyle})
   )
 }
 
-export default CustomTextInput
+export default CustomTextInput;

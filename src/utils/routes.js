@@ -7,4 +7,5 @@ export default {
   HOME: 'Home',
   PROFILE: 'Profile',
   LOGOUT: 'Logout',
+  MIDTERM: 'Midterm',
 };

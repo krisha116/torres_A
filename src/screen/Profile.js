@@ -17,7 +17,8 @@ const Profile = () => {
         }}
         style={{ width: 200, height: 200 }}
       />
-      <Text style={{ fontSize: 40 }}>Information Technology- Student</Text>
+      <Text style={{ fontSize: 40 }}>Information Technology</Text>
+
     </View>
   );
 };

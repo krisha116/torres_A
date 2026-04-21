@@ -255,7 +255,7 @@
 // export default Login
 
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
   View, 
   Text, 
@@ -269,6 +269,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
+// .js -> javascript
+// .jsx -> javascript extension 
+// .ts -> typescript
+// .tsx -> typescript extension
+
 import CustomTextInput from '../../components/CustomTextInput';
 import CustomButton from '../../components/CustomButton';
 import { ROUTES } from '../../utils';
@@ -276,27 +281,47 @@ import { authLogin } from '../../app/reducers/auth';
 import IMG from '../../utils/images';
 
 const FOX_THEME = {
-  orange: '#E67E22',
+  orange: '#53e622',
   dark: '#2C3E50',
   light: '#ECF0F1',
-  accent: '#D35400',
+  accent: '#0b35bf',
 };
 
-const Login = () => {
+const Login: React.FC = () => {
   // Hooks at the top to satisfy React Rules
   const insets = useSafeAreaInsets();
   const navigations = useNavigation();
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
+  const {isLoading, data, isError, error} = useSelector(
+  (state: { 
+    auth: { 
+      isLoading: boolean; 
+      isError: boolean; 
+      error: string; 
+      data: {
+        status: boolean;
+        message: string;
+        data: {
+          token: string;
+          user: {
+            username: string;
+            password: string;
+            roles: string[];
+            verified: boolean;
+          }
+        }
+      } }) => state.auth);
   
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  
+
+  const [username, setUsername] = useState<number | string>('');
+  const [password, setPassword] = useState<string>();
 
   useEffect(() => {
-    if (!auth.isLoading && auth.isError && auth.error) {
-      Alert.alert('Login failed', auth.error);
+    if (!isLoading && isError && error) {
+      Alert.alert('Login failed', error);
     }
-  }, [auth.isLoading, auth.isError, auth.error]);
+  }, [isLoading, isError, error]);
 
   const handleLogin = () => {
     // If these are empty, it means the CustomTextInput isn't updating the state
@@ -324,16 +349,16 @@ const Login = () => {
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.welcomeText}>Welcome Back!</Text>
-        <Text style={styles.subText}>Login to your Sly account</Text>
+        <Text style={styles.welcomeText}>Welcome</Text>
       </View>
 
       <View style={styles.formSection}>
         <CustomTextInput 
           label={'Username'} 
           placeholder={'Enter Username'} 
+          
           // CHANGED BACK TO YOUR ORIGINAL PROP NAME
-          value={(val) => setUsername(val)} 
+          value={(val: number | string) => setUsername(val)} 
           containerStyle={styles.inputContainer}
           textStyle={styles.inputText} 
         />
@@ -342,7 +367,7 @@ const Login = () => {
           label={'Password'}
           placeholder={'Enter Password'}
           // CHANGED BACK TO YOUR ORIGINAL PROP NAME
-          value={(val) => setPassword(val)}
+          value={(val: string) => setPassword(val)}
           secureTextEntry={true}
           containerStyle={styles.inputContainer}
           textStyle={styles.inputText}
@@ -351,7 +376,7 @@ const Login = () => {
         <CustomButton 
           label={'LOG IN'} 
           containerStyle={styles.loginButton} 
-          textsStyle={styles.loginButtonText}
+          textStyle={styles.loginButtonText}
           onPress={handleLogin}
         />
       </View>

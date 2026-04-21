@@ -8,7 +8,7 @@ import {
 import { authLogin as userLoginApi } from "../api/auth";
 
 export function* userLoginAsync(action) {
-  console.log('🚀 User login saga started with:', action.payload);
+  console.log(' User login saga started with:', action.payload);
 
   try {
     yield put({ type: USER_LOGIN_REQUEST });
@@ -23,11 +23,11 @@ export function* userLoginAsync(action) {
       throw new Error("Login timed out. Check if your API server is running and accessible from your phone.");
     }
 
-    console.log('✅ Login response received:', data);
+    console.log(' Login response received:', data);
     yield put({ type: USER_LOGIN_COMPLETE, payload: data });
 
   } catch (error) {
-    console.log('❌ User Login saga error:', error);
+    console.log(' User Login saga error:', error);
 
     // Provide a helpful message if it's a network/connection error
     const errorMessage = error.message === "Network Error" 

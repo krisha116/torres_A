@@ -1,10 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { IMG, ROUTES } from '../utils';
-import { authLogout } from '../app/actions';
-
-const HomeScreen = () => {
+import { Image, Text, View } from 'react-native';
+import { IMG } from '../utils';
+const midtermexam = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -19,11 +15,11 @@ const HomeScreen = () => {
       }}
     >
       <Image source={IMG.LOGO} style={{ width: 320, height: 100 }} />
-      <Text style={{ fontSize: 20 }}>Torres Krisha-Ann</Text>
+      <Text style={{ fontSize: 20 }}>midterm exam</Text>
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate(ROUTES.PROFILE);
+          navigation.navigate(ROUTES.MIDTERM);
         }}
       >
         <View
@@ -33,9 +29,8 @@ const HomeScreen = () => {
             borderRadius: 20,
             marginTop: 20,
           }}
-          
         >
-          <Text style={{ fontSize: 24, color: 'white' }}>midterm exam</Text>
+          <Text style={{ fontSize: 24, color: 'white' }}>VISIT PROFILE</Text>
         </View>
       </TouchableOpacity>
 
@@ -46,17 +41,17 @@ const HomeScreen = () => {
       >
         <View
           style={{
-            backgroundColor: 'green',
+            backgroundColor: 'blue',
             padding: 10,
             borderRadius: 20,
             marginTop: 20,
           }}
         >
-          <Text style={{ fontSize: 24, color: 'white' }}>LOG OUT</Text>
+          <Text style={{ fontSize: 24, color: 'red' }}>LOG OUT</Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default HomeScreen;
+export default midtermexam;

@@ -4,20 +4,22 @@ export interface LoginCredentials {
     password: string;
 }
 
-export interface LoginResponse{
-    //successful login response
-    token: string
+export type LoginResponse = LoginSuccessResponse | LoginErrorResponse;
+
+export interface LoginSuccessResponse {
+    token: string;
     user: {
-        username: string
-        email: string
-        roles: string[],
-        verified: boolean
-    }
+        username: string;
+        email: string;
+        roles: string[];
+        verified: boolean;
+    };
+}
 
-    //error response
-     "message": string
-     "errors":{
-        "login": string[]
-     }
-
+export interface LoginErrorResponse {
+    message: string;
+    errors?: {
+        login?: string[];
+        [key: string]: string[] | undefined;
+    };
 }

@@ -33,14 +33,17 @@ const response = await fetch(BASE_URL +  '/login', {
 
 
 
-const data = await response.json();
 const data: LoginResponse = await response.json();
 
 if (response.status === 200) {
     console.log(data);
     return data;
 }else{
-    throw new Error(data.errors || 'Login failed');
+    const message =
+        ("message" in data && data.message) ||
+        (("errors" in data && data.errors?.login?.length) ? data.errors.login.join(", ") : undefined) ||
+        "Login failed";
+    throw new Error(message);
 }
 
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "485635710593",
+    "project_id": "appdevann",
+    "storage_bucket": "appdevann.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485635710593:android:429c98436b18d22608f780",
+        "android_client_info": {
+          "package_name": "com.act1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWBHf8_-RkBRlUprZTx9AT4100iDd0WPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

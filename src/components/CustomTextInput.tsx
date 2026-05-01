@@ -1,14 +1,25 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { StyleProp, Text, TextStyle, View, ViewStyle } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
-const CustomTextInput = ({
-  label= '', 
-  placeholder= '', 
-  value= (val: number | string) => {}, 
-  onChangeText= () => {}, 
-  textStyle= {}, 
-  containerStyle= {}
+type Props = {
+  label?: string
+  placeholder?: string
+  value?: string
+  onChangeText?: (text: string) => void
+  secureTextEntry?: boolean
+  textStyle?: StyleProp<TextStyle>
+  containerStyle?: StyleProp<ViewStyle>
+}
+
+const CustomTextInput: React.FC<Props> = ({
+  label = '',
+  placeholder = '',
+  value = '',
+  onChangeText = () => {},
+  secureTextEntry = false,
+  textStyle,
+  containerStyle,
 }) => {
   return (
     <View style={containerStyle}>
@@ -16,13 +27,19 @@ const CustomTextInput = ({
           fontWeight: 'bold',
         }}>{label}</Text>
 
-      <TextInput placeholder={placeholder}
-                 onChangeText={value}
-      style={[
-         textStyle,
-        { width: '100%',
-       borderBottomWidth: 1, 
-        } ]} />
+      <TextInput
+        placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+        style={[
+          textStyle,
+          {
+            width: '100%',
+            borderBottomWidth: 1,
+          },
+        ]}
+      />
     </View>
   )
 }

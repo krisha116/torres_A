@@ -259,14 +259,11 @@ import React, { useEffect, useState } from 'react'
 import { 
   View, 
   Text, 
-  TouchableOpacity, 
   Alert, 
   StyleSheet, 
-  Image, 
   StatusBar 
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 // .js -> javascript
@@ -276,9 +273,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CustomTextInput from '../../components/CustomTextInput';
 import CustomButton from '../../components/CustomButton';
-import { ROUTES } from '../../utils';
 import { authLogin } from '../../app/reducers/auth';
-import IMG from '../../utils/images';
 
 const FOX_THEME = {
   orange: '#53e622',
@@ -290,34 +285,18 @@ const FOX_THEME = {
 const Login: React.FC = () => {
   // Hooks at the top to satisfy React Rules
   const insets = useSafeAreaInsets();
-  const navigations = useNavigation();
   const dispatch = useDispatch();
-  const {isLoading, data, isError, error} = useSelector(
+  const {isLoading, isError, error} = useSelector(
   (state: 
     { auth: { 
       isLoading: boolean; 
       isError: boolean; 
       error: string; 
-      data: {
-        status: boolean;
-        message: string;
-        data: 
-        {token: string;
-          user:
-           {
-            username: string;
-            password: string;
-            roles: string[];
-            verified: boolean;
-          }
-        }
-      
-    }
   }}) =>
          state.auth)
   
-  const [username, setUsername] = useState<number | string>('');
-  const [password, setPassword] = useState<string>();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     if (!isLoading && isError && error) {
@@ -333,8 +312,8 @@ const Login: React.FC = () => {
     }
 
     dispatch(authLogin({ 
-      username: username, 
-      password: password 
+      username,
+      password,
     }));
   };
 
@@ -359,8 +338,8 @@ const Login: React.FC = () => {
           label={'Username'} 
           placeholder={'Enter Username'} 
           
-          // CHANGED BACK TO YOUR ORIGINAL PROP NAME
-          value={(val: number | string) => setUsername(val as string)} 
+          value={username}
+          onChangeText={setUsername}
           containerStyle={styles.inputContainer}
           textStyle={styles.inputText} 
         />
@@ -368,9 +347,9 @@ const Login: React.FC = () => {
         <CustomTextInput 
           label={'Password'}
           placeholder={'Enter Password'}
-          // CHANGED BACK TO YOUR ORIGINAL PROP NAME
-          value={(val: string | number) => setPassword(val as string)}
-          // secureTextEntry={true}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
           containerStyle={styles.inputContainer}
           textStyle={styles.inputText}
         />

@@ -19,7 +19,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {!isLoggedIn ? <MainNav /> : <AuthNav />}
+      {isLoggedIn ? <MainNav /> : <AuthNav />}
     </NavigationContainer>
   );
 };

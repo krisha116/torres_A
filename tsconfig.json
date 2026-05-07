@@ -8,7 +8,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "App.js",
+    "App.tsx",
     "nativewind-env.d.ts"
   ],
   "exclude": [

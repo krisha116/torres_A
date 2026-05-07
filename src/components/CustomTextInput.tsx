@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleProp, Text, TextStyle, View, ViewStyle } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import { StyleProp, Text, TextStyle, View, ViewStyle, TextInput } from 'react-native'
 
 type Props = {
   label?: string
@@ -16,16 +15,16 @@ const CustomTextInput: React.FC<Props> = ({
   label = '',
   placeholder = '',
   value = '',
-  onChangeText = () => {},
+  onChangeText,
   secureTextEntry = false,
   textStyle,
   containerStyle,
 }) => {
   return (
     <View style={containerStyle}>
-        <Text style={{
-          fontWeight: 'bold',
-        }}>{label}</Text>
+      {label ? (
+        <Text style={{ fontWeight: 'bold' }}>{label}</Text>
+      ) : null}
 
       <TextInput
         placeholder={placeholder}
@@ -33,15 +32,15 @@ const CustomTextInput: React.FC<Props> = ({
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         style={[
-          textStyle,
           {
             width: '100%',
             borderBottomWidth: 1,
           },
+          textStyle,
         ]}
       />
     </View>
   )
 }
 
-export default CustomTextInput;
+export default CustomTextInput
